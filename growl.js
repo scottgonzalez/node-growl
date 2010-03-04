@@ -5,6 +5,11 @@ function quote( str ) {
 }
 
 exports.notify = function( msg, options ) {
+	if ( typeof msg === "object" ) {
+		options = msg;
+		msg = null;
+	}
+	
 	options = process.mixin( { message: msg }, options );
 	var cmd = [ "growlnotify" ];
 	for (var option in options) {
